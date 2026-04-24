@@ -3,10 +3,11 @@
 :root {
   color-scheme: light;
   --background: #f4efe6;
-  --background-elevated: rgba(255, 250, 242, 0.88);
+  --background-elevated: rgba(255, 250, 242, 0.94);
   --foreground: #201913;
-  --muted: #6f6257;
-  --panel: rgba(255, 251, 245, 0.82);
+  --muted: #5f5145;
+  --muted-strong: #43372f;
+  --panel: rgba(255, 251, 245, 0.94);
   --panel-border: rgba(90, 67, 49, 0.14);
   --panel-shadow: rgba(62, 37, 22, 0.1);
   --accent: #a24d2f;
@@ -17,10 +18,11 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   --background: #1a1716;
-  --background-elevated: rgba(39, 34, 31, 0.9);
+  --background-elevated: rgba(39, 34, 31, 0.94);
   --foreground: #f4ede5;
-  --muted: #c5b8ad;
-  --panel: rgba(35, 30, 28, 0.84);
+  --muted: #d2c6bc;
+  --muted-strong: #ebe1d8;
+  --panel: rgba(35, 30, 28, 0.92);
   --panel-border: rgba(236, 220, 206, 0.14);
   --panel-shadow: rgba(0, 0, 0, 0.28);
   --accent: #f09a67;

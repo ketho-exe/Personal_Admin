@@ -76,7 +76,7 @@ export function PriorityList({ items, tasks }: PriorityListProps) {
                   </StatusPill>
                 </div>
                 <h3 className="mt-4 text-2xl leading-8">{item.title}</h3>
-                <p className="m-0 mt-2 text-base leading-7 text-[var(--muted)]">{item.summary}</p>
+                <p className="m-0 mt-2 text-base leading-7 text-[var(--muted-strong)]">{item.summary}</p>
               </div>
 
               <Card className="grid gap-3 rounded-[1.25rem] p-4" tone="warm">
@@ -95,7 +95,7 @@ export function PriorityList({ items, tasks }: PriorityListProps) {
                   <p className="m-0 mt-2 text-sm leading-6 text-[var(--foreground)]">
                     {linkedTask?.title ?? "Review details and decide next step"}
                   </p>
-                  <p className="m-0 mt-1 text-sm text-[var(--muted)]">
+                  <p className="m-0 mt-1 text-sm text-[var(--muted-strong)]">
                     {linkedTask ? `${linkedTask.estimateMinutes} min block` : "Quick review"}
                   </p>
                 </div>

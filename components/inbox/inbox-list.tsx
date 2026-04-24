@@ -86,8 +86,8 @@ export function InboxList({ items, tasks }: InboxListProps) {
                   </StatusPill>
                 </div>
                 <h3 className="mt-4 text-2xl leading-8">{item.title}</h3>
-                <p className="m-0 mt-2 text-base leading-7 text-[var(--muted)]">{item.summary}</p>
-                <p className="m-0 mt-4 text-sm text-[var(--muted)]">
+                <p className="m-0 mt-2 text-base leading-7 text-[var(--muted-strong)]">{item.summary}</p>
+                <p className="m-0 mt-4 text-sm text-[var(--muted-strong)]">
                   {item.sender} • {receivedFormatter.format(new Date(item.receivedAt))}
                 </p>
               </div>

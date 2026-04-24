@@ -29,7 +29,7 @@ export function SectionHeading({
         </h2>
       </div>
       {description ? (
-        <div className="max-w-md text-sm leading-6 text-[var(--muted)]">
+        <div className="max-w-md text-sm leading-6 text-[var(--muted-strong)]">
           {description}
         </div>
       ) : null}

@@ -18,9 +18,9 @@ type CardProps<T extends ElementType = "div"> = {
 const toneClasses: Record<CardTone, string> = {
   panel:
     "border border-[var(--panel-border)] bg-[var(--panel)] shadow-[0_20px_60px_var(--panel-shadow)]",
-  glass: "border border-[var(--panel-border)] bg-[rgba(255,255,255,0.56)]",
-  subtle: "border border-[var(--panel-border)] bg-[rgba(255,255,255,0.46)]",
-  warm: "border border-[var(--panel-border)] bg-[rgba(255,244,234,0.8)]",
+  glass: "border border-[var(--panel-border)] bg-[rgba(255,255,255,0.78)]",
+  subtle: "border border-[var(--panel-border)] bg-[rgba(255,255,255,0.72)]",
+  warm: "border border-[var(--panel-border)] bg-[rgba(255,244,234,0.92)]",
   dark: "border border-[var(--panel-border)] bg-[rgba(32,25,19,0.9)] text-[var(--background)] shadow-[0_18px_48px_rgba(32,25,19,0.22)]"
 };
 

@@ -41,7 +41,7 @@ export function BriefingHero({
   return (
     <section
       aria-labelledby="today-briefing-title"
-      className="relative overflow-hidden rounded-[2rem] border border-[var(--panel-border)] bg-[linear-gradient(135deg,rgba(255,255,255,0.66),rgba(255,244,234,0.88))] p-6 shadow-[0_24px_80px_var(--panel-shadow)] backdrop-blur md:p-8"
+      className="relative overflow-hidden rounded-[2rem] border border-[var(--panel-border)] bg-[linear-gradient(135deg,rgba(255,255,255,0.82),rgba(255,244,234,0.96))] p-6 shadow-[0_24px_80px_var(--panel-shadow)] backdrop-blur md:p-8"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(162,77,47,0.18),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(255,214,171,0.3),transparent_32%)]" />
       <div className="relative grid gap-6 xl:grid-cols-[minmax(0,1.65fr)_minmax(18rem,0.95fr)]">
@@ -63,7 +63,7 @@ export function BriefingHero({
               <p className="m-0 max-w-3xl text-lg leading-8 text-[color-mix(in_srgb,var(--foreground)_82%,white)] md:text-xl">
                 {briefing.title}
               </p>
-              <p className="m-0 max-w-3xl text-base leading-7 text-[var(--muted)]">
+              <p className="m-0 max-w-3xl text-base leading-7 text-[var(--muted-strong)]">
                 {briefing.summary}
               </p>
             </div>
@@ -83,7 +83,7 @@ export function BriefingHero({
                   className={`rounded-[1.35rem] border px-4 py-4 ${toneClass}`}
                   key={stat.id}
                 >
-                  <dt className="text-sm text-[var(--muted)]">{stat.label}</dt>
+                  <dt className="text-sm text-[var(--muted-strong)]">{stat.label}</dt>
                   <dd className="m-0 pt-2 text-2xl">{stat.value}</dd>
                 </div>
               );
@@ -97,7 +97,7 @@ export function BriefingHero({
               First move
             </p>
             <p className="mt-3 text-xl leading-7">{leadTask?.title}</p>
-            <p className="m-0 mt-2 text-sm leading-6 text-[rgba(244,239,230,0.76)]">
+            <p className="m-0 mt-2 text-sm leading-6 text-[rgba(244,239,230,0.88)]">
               {leadTask?.summary}
             </p>
             <div className="mt-4 flex flex-wrap gap-2 text-sm text-[rgba(244,239,230,0.92)]">
@@ -117,10 +117,10 @@ export function BriefingHero({
             <p className="mt-3 text-lg leading-7 text-[var(--foreground)]">
               {leadInboxItem?.sender} is still waiting on a response.
             </p>
-            <p className="m-0 mt-2 text-sm leading-6 text-[var(--muted)]">
+            <p className="m-0 mt-2 text-sm leading-6 text-[var(--muted-strong)]">
               {leadInboxItem?.summary}
             </p>
-            <p className="m-0 mt-4 text-sm text-[var(--muted)]">
+            <p className="m-0 mt-4 text-sm text-[var(--muted-strong)]">
               Briefing generated at{" "}
               <span className="text-[var(--foreground)]">
                 {generatedAtFormatter.format(new Date(briefing.generatedAt))}
