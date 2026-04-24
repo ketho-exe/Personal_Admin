@@ -94,7 +94,7 @@ export function InboxList({ items, tasks }: InboxListProps) {
 
               <Card className="grid gap-3 rounded-[1.25rem] p-4" tone="warm">
                 <div>
-                  <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+                  <p className="m-0 text-xs uppercase tracking-[0.16em] text-[#8a3a22]">
                     Response lane
                   </p>
                   <p className="m-0 mt-2 text-lg">
@@ -102,7 +102,7 @@ export function InboxList({ items, tasks }: InboxListProps) {
                   </p>
                 </div>
                 <div>
-                  <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+                  <p className="m-0 text-xs uppercase tracking-[0.16em] text-[#8a3a22]">
                     Linked task
                   </p>
                   <p className="m-0 mt-2 text-sm leading-6 text-[var(--foreground)]">

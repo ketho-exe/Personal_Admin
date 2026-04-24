@@ -13,8 +13,8 @@ type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
 const toneClasses: Record<BadgeTone, string> = {
   neutral: "bg-[rgba(32,25,19,0.08)] text-[var(--foreground)]",
   muted: "bg-[rgba(32,25,19,0.08)] text-[var(--muted-strong)]",
-  accent: "bg-[rgba(162,77,47,0.12)] text-[var(--accent-strong)]",
-  attention: "bg-[rgba(162,77,47,0.14)] text-[var(--accent-strong)]",
+  accent: "bg-[rgba(162,77,47,0.18)] text-[#6f2f1c]",
+  attention: "bg-[rgba(162,77,47,0.2)] text-[#6f2f1c]",
   warning: "bg-[rgba(193,138,44,0.16)] text-[rgb(117,78,14)]",
   success: "bg-[rgba(77,132,79,0.12)] text-[rgb(52,92,54)]"
 };
