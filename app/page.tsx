@@ -9,7 +9,7 @@ export default async function HomePage() {
   const data = await getDashboardData();
 
   return (
-    <div className="px-5 py-5 md:px-8 md:py-8 xl:px-10">
+    <div className="px-5 py-5 md:px-8 md:py-8 xl:px-10" data-testid="today-page">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
         <BriefingHero
           briefing={data.briefing}

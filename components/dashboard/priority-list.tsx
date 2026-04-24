@@ -42,13 +42,18 @@ function getSourceLabel(source: AdminItemRecord["source"]) {
 
 export function PriorityList({ items, tasks }: PriorityListProps) {
   return (
-    <section className="rounded-[1.75rem] border border-[var(--panel-border)] bg-[var(--panel)] p-6 shadow-[0_20px_60px_var(--panel-shadow)]">
+    <section
+      aria-labelledby="today-priorities-title"
+      className="rounded-[1.75rem] border border-[var(--panel-border)] bg-[var(--panel)] p-6 shadow-[0_20px_60px_var(--panel-shadow)]"
+    >
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
             Priorities
           </p>
-          <h2 className="mt-3 text-3xl">What deserves attention first</h2>
+          <h2 className="mt-3 text-3xl" id="today-priorities-title">
+            What deserves attention first
+          </h2>
         </div>
         <p className="m-0 max-w-md text-sm leading-6 text-[var(--muted)]">
           The queue blends urgent admin signals with the task context needed to move them

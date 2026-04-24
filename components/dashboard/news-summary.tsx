@@ -11,13 +11,18 @@ const publishedFormatter = new Intl.DateTimeFormat("en-GB", {
 
 export function NewsSummary({ items }: NewsSummaryProps) {
   return (
-    <section className="rounded-[1.75rem] border border-[var(--panel-border)] bg-[var(--panel)] p-6 shadow-[0_20px_60px_var(--panel-shadow)]">
+    <section
+      aria-labelledby="today-news-title"
+      className="rounded-[1.75rem] border border-[var(--panel-border)] bg-[var(--panel)] p-6 shadow-[0_20px_60px_var(--panel-shadow)]"
+    >
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
             News Digest
           </p>
-          <h2 className="mt-3 text-3xl">Signals worth keeping in view</h2>
+          <h2 className="mt-3 text-3xl" id="today-news-title">
+            Signals worth keeping in view
+          </h2>
         </div>
         <p className="m-0 max-w-md text-sm leading-6 text-[var(--muted)]">
           A tighter read on policy and finance changes that could affect the next decisions.

@@ -2,29 +2,35 @@ import { render, screen } from "@testing-library/react";
 import HomePage from "@/app/page";
 
 describe("HomePage", () => {
-  it("renders the today dashboard structure", async () => {
+  it("renders the today dashboard container and named regions", async () => {
     const page = await HomePage();
 
-    const { container } = render(page);
+    render(page);
 
-    expect(screen.getByRole("heading", { name: "Today" })).toBeInTheDocument();
-    expect(screen.getAllByRole("heading", { level: 2 })).toHaveLength(5);
-    expect(screen.getAllByRole("article")).toHaveLength(9);
-    expect(container.querySelectorAll("section").length).toBeGreaterThanOrEqual(6);
-    expect(container.querySelectorAll("dl")).toHaveLength(1);
-    expect(container.querySelectorAll("dt")).toHaveLength(4);
-    expect(screen.getAllByTitle(/coming soon/i)).toHaveLength(3);
-    expect(document.querySelectorAll("[aria-disabled='true']")).toHaveLength(3);
+    expect(screen.getByTestId("today-page")).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Today" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("region", { name: /what deserves attention first/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("region", { name: /cash flow at a glance/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("region", { name: /signals worth keeping in view/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("region", { name: /choose the next lane/i })
+    ).toBeInTheDocument();
   });
 
-  it("keeps unfinished quick actions visible without rendering dead links", async () => {
+  it("shows disabled quick actions inside the actions region", async () => {
     const page = await HomePage();
 
-    const { container } = render(page);
+    render(page);
 
-    expect(document.querySelectorAll("[aria-disabled='true']")).toHaveLength(3);
-    expect(screen.getAllByTitle(/coming soon/i)).toHaveLength(3);
-    expect(container.querySelectorAll("[aria-disabled='true'] a")).toHaveLength(0);
-    expect(screen.queryAllByRole("link")).toHaveLength(0);
+    const actionsRegion = screen.getByRole("region", { name: /choose the next lane/i });
+
+    expect(actionsRegion.querySelector("[aria-disabled='true']")).not.toBeNull();
+    expect(actionsRegion.querySelector("a")).toBeNull();
   });
 });

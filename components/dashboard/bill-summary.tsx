@@ -16,13 +16,18 @@ const dateFormatter = new Intl.DateTimeFormat("en-GB", {
 
 export function BillSummary({ bills }: BillSummaryProps) {
   return (
-    <section className="rounded-[1.75rem] border border-[var(--panel-border)] bg-[var(--panel)] p-6 shadow-[0_20px_60px_var(--panel-shadow)]">
+    <section
+      aria-labelledby="today-bills-title"
+      className="rounded-[1.75rem] border border-[var(--panel-border)] bg-[var(--panel)] p-6 shadow-[0_20px_60px_var(--panel-shadow)]"
+    >
       <div className="flex items-end justify-between gap-3">
         <div>
           <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
             Upcoming Bills
           </p>
-          <h2 className="mt-3 text-3xl">Cash flow at a glance</h2>
+          <h2 className="mt-3 text-3xl" id="today-bills-title">
+            Cash flow at a glance
+          </h2>
         </div>
       </div>
 
