@@ -104,6 +104,7 @@ create table if not exists public.profiles (
   updated_at timestamptz not null default now()
 );
 
+drop trigger if exists profiles_set_updated_at on public.profiles;
 create trigger profiles_set_updated_at
 before update on public.profiles
 for each row execute function public.set_updated_at();
@@ -124,6 +125,7 @@ create table if not exists public.user_settings (
   updated_at timestamptz not null default now()
 );
 
+drop trigger if exists user_settings_set_updated_at on public.user_settings;
 create trigger user_settings_set_updated_at
 before update on public.user_settings
 for each row execute function public.set_updated_at();
@@ -152,6 +154,7 @@ create table if not exists public.connected_accounts (
 create index if not exists connected_accounts_user_id_idx on public.connected_accounts(user_id);
 create index if not exists connected_accounts_provider_idx on public.connected_accounts(provider);
 
+drop trigger if exists connected_accounts_set_updated_at on public.connected_accounts;
 create trigger connected_accounts_set_updated_at
 before update on public.connected_accounts
 for each row execute function public.set_updated_at();
@@ -178,6 +181,7 @@ create table if not exists public.rss_feeds (
 create index if not exists rss_feeds_user_id_idx on public.rss_feeds(user_id);
 create index if not exists rss_feeds_active_idx on public.rss_feeds(user_id, is_active);
 
+drop trigger if exists rss_feeds_set_updated_at on public.rss_feeds;
 create trigger rss_feeds_set_updated_at
 before update on public.rss_feeds
 for each row execute function public.set_updated_at();
@@ -222,6 +226,7 @@ create index if not exists admin_items_source_idx on public.admin_items(user_id,
 create index if not exists admin_items_due_date_idx on public.admin_items(user_id, detected_due_date);
 create index if not exists admin_items_created_at_idx on public.admin_items(user_id, created_at desc);
 
+drop trigger if exists admin_items_set_updated_at on public.admin_items;
 create trigger admin_items_set_updated_at
 before update on public.admin_items
 for each row execute function public.set_updated_at();
@@ -266,6 +271,7 @@ create index if not exists detected_bills_user_id_idx on public.detected_bills(u
 create index if not exists detected_bills_due_date_idx on public.detected_bills(user_id, due_date);
 create index if not exists detected_bills_status_idx on public.detected_bills(user_id, status);
 
+drop trigger if exists detected_bills_set_updated_at on public.detected_bills;
 create trigger detected_bills_set_updated_at
 before update on public.detected_bills
 for each row execute function public.set_updated_at();
@@ -292,6 +298,7 @@ create index if not exists tasks_user_id_idx on public.tasks(user_id);
 create index if not exists tasks_status_idx on public.tasks(user_id, status);
 create index if not exists tasks_due_date_idx on public.tasks(user_id, due_date);
 
+drop trigger if exists tasks_set_updated_at on public.tasks;
 create trigger tasks_set_updated_at
 before update on public.tasks
 for each row execute function public.set_updated_at();
@@ -322,6 +329,7 @@ create index if not exists user_rules_user_id_idx on public.user_rules(user_id);
 create index if not exists user_rules_enabled_idx on public.user_rules(user_id, is_enabled);
 create index if not exists user_rules_priority_idx on public.user_rules(user_id, priority);
 
+drop trigger if exists user_rules_set_updated_at on public.user_rules;
 create trigger user_rules_set_updated_at
 before update on public.user_rules
 for each row execute function public.set_updated_at();
@@ -390,111 +398,144 @@ alter table public.user_rules enable row level security;
 alter table public.ingestion_runs enable row level security;
 
 -- Profiles
+drop policy if exists "Users can view own profile" on public.profiles;
 create policy "Users can view own profile" on public.profiles
 for select using (auth.uid() = id);
 
+drop policy if exists "Users can update own profile" on public.profiles;
 create policy "Users can update own profile" on public.profiles
 for update using (auth.uid() = id);
 
 -- User settings
+drop policy if exists "Users can view own settings" on public.user_settings;
 create policy "Users can view own settings" on public.user_settings
 for select using (auth.uid() = user_id);
 
+drop policy if exists "Users can update own settings" on public.user_settings;
 create policy "Users can update own settings" on public.user_settings
 for update using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert own settings" on public.user_settings;
 create policy "Users can insert own settings" on public.user_settings
 for insert with check (auth.uid() = user_id);
 
 -- Connected accounts
+drop policy if exists "Users can view own connected accounts" on public.connected_accounts;
 create policy "Users can view own connected accounts" on public.connected_accounts
 for select using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert own connected accounts" on public.connected_accounts;
 create policy "Users can insert own connected accounts" on public.connected_accounts
 for insert with check (auth.uid() = user_id);
 
+drop policy if exists "Users can update own connected accounts" on public.connected_accounts;
 create policy "Users can update own connected accounts" on public.connected_accounts
 for update using (auth.uid() = user_id);
 
+drop policy if exists "Users can delete own connected accounts" on public.connected_accounts;
 create policy "Users can delete own connected accounts" on public.connected_accounts
 for delete using (auth.uid() = user_id);
 
 -- RSS feeds
+drop policy if exists "Users can view own rss feeds" on public.rss_feeds;
 create policy "Users can view own rss feeds" on public.rss_feeds
 for select using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert own rss feeds" on public.rss_feeds;
 create policy "Users can insert own rss feeds" on public.rss_feeds
 for insert with check (auth.uid() = user_id);
 
+drop policy if exists "Users can update own rss feeds" on public.rss_feeds;
 create policy "Users can update own rss feeds" on public.rss_feeds
 for update using (auth.uid() = user_id);
 
+drop policy if exists "Users can delete own rss feeds" on public.rss_feeds;
 create policy "Users can delete own rss feeds" on public.rss_feeds
 for delete using (auth.uid() = user_id);
 
 -- Admin items
+drop policy if exists "Users can view own admin items" on public.admin_items;
 create policy "Users can view own admin items" on public.admin_items
 for select using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert own admin items" on public.admin_items;
 create policy "Users can insert own admin items" on public.admin_items
 for insert with check (auth.uid() = user_id);
 
+drop policy if exists "Users can update own admin items" on public.admin_items;
 create policy "Users can update own admin items" on public.admin_items
 for update using (auth.uid() = user_id);
 
+drop policy if exists "Users can delete own admin items" on public.admin_items;
 create policy "Users can delete own admin items" on public.admin_items
 for delete using (auth.uid() = user_id);
 
 -- Item events
+drop policy if exists "Users can view own item events" on public.item_events;
 create policy "Users can view own item events" on public.item_events
 for select using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert own item events" on public.item_events;
 create policy "Users can insert own item events" on public.item_events
 for insert with check (auth.uid() = user_id);
 
 -- Detected bills
+drop policy if exists "Users can view own detected bills" on public.detected_bills;
 create policy "Users can view own detected bills" on public.detected_bills
 for select using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert own detected bills" on public.detected_bills;
 create policy "Users can insert own detected bills" on public.detected_bills
 for insert with check (auth.uid() = user_id);
 
+drop policy if exists "Users can update own detected bills" on public.detected_bills;
 create policy "Users can update own detected bills" on public.detected_bills
 for update using (auth.uid() = user_id);
 
+drop policy if exists "Users can delete own detected bills" on public.detected_bills;
 create policy "Users can delete own detected bills" on public.detected_bills
 for delete using (auth.uid() = user_id);
 
 -- Tasks
+drop policy if exists "Users can view own tasks" on public.tasks;
 create policy "Users can view own tasks" on public.tasks
 for select using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert own tasks" on public.tasks;
 create policy "Users can insert own tasks" on public.tasks
 for insert with check (auth.uid() = user_id);
 
+drop policy if exists "Users can update own tasks" on public.tasks;
 create policy "Users can update own tasks" on public.tasks
 for update using (auth.uid() = user_id);
 
+drop policy if exists "Users can delete own tasks" on public.tasks;
 create policy "Users can delete own tasks" on public.tasks
 for delete using (auth.uid() = user_id);
 
 -- User rules
+drop policy if exists "Users can view own rules" on public.user_rules;
 create policy "Users can view own rules" on public.user_rules
 for select using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert own rules" on public.user_rules;
 create policy "Users can insert own rules" on public.user_rules
 for insert with check (auth.uid() = user_id);
 
+drop policy if exists "Users can update own rules" on public.user_rules;
 create policy "Users can update own rules" on public.user_rules
 for update using (auth.uid() = user_id);
 
+drop policy if exists "Users can delete own rules" on public.user_rules;
 create policy "Users can delete own rules" on public.user_rules
 for delete using (auth.uid() = user_id);
 
 -- Ingestion runs
+drop policy if exists "Users can view own ingestion runs" on public.ingestion_runs;
 create policy "Users can view own ingestion runs" on public.ingestion_runs
 for select using (auth.uid() = user_id);
 
+drop policy if exists "Users can insert own ingestion runs" on public.ingestion_runs;
 create policy "Users can insert own ingestion runs" on public.ingestion_runs
 for insert with check (auth.uid() = user_id);
 
