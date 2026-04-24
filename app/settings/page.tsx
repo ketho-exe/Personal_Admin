@@ -1,13 +1,19 @@
+import Link from "next/link";
+import { ConnectionCard } from "@/components/settings/connection-card";
 import { SettingsPanels } from "@/components/settings/settings-panels";
 import {
+  getDemoAuthEntrySurface,
   getDemoBills,
+  getDemoConnectionPlaceholders,
   getDemoInboxItems,
   getDemoNewsItems,
   getDemoTasks
 } from "@/lib/demo-data";
 
 export default async function SettingsPage() {
+  const authEntrySurface = getDemoAuthEntrySurface();
   const bills = getDemoBills();
+  const connectionPlaceholders = getDemoConnectionPlaceholders();
   const inboxItems = getDemoInboxItems();
   const newsItems = getDemoNewsItems();
   const tasks = getDemoTasks();
@@ -31,6 +37,44 @@ export default async function SettingsPage() {
             <span className="rounded-full bg-[rgba(32,25,19,0.06)] px-3 py-1 text-[var(--muted)]">
               Integration-ready placeholders
             </span>
+          </div>
+        </section>
+
+        <section
+          aria-labelledby="settings-auth-title"
+          className="grid gap-4 lg:grid-cols-[1.15fr_1.85fr]"
+        >
+          <article className="rounded-[1.75rem] border border-[var(--panel-border)] bg-[rgba(255,255,255,0.72)] p-6 shadow-[0_20px_60px_var(--panel-shadow)]">
+            <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+              Login entry
+            </p>
+            <h2 className="mt-3 text-3xl" id="settings-auth-title">
+              Auth-ready surface
+            </h2>
+            <p className="m-0 mt-4 text-base leading-7 text-[var(--muted)]">
+              {authEntrySurface.summary}
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                className="rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
+                href="/login"
+              >
+                {authEntrySurface.primaryActionLabel}
+              </Link>
+              <span className="rounded-full border border-dashed border-[var(--panel-border)] px-4 py-2 text-sm font-semibold text-[var(--muted)]">
+                Provider flows coming later
+              </span>
+            </div>
+          </article>
+
+          <div
+            aria-label="connection placeholders"
+            className="grid gap-4 md:grid-cols-2"
+            role="region"
+          >
+            {connectionPlaceholders.map((connection) => (
+              <ConnectionCard connection={connection} key={connection.id} />
+            ))}
           </div>
         </section>
 

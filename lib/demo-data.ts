@@ -9,6 +9,22 @@ import type {
   TaskItem
 } from "@/lib/types";
 
+export type AuthEntrySurface = {
+  title: string;
+  summary: string;
+  primaryActionLabel: string;
+  secondaryActionLabel: string;
+};
+
+export type DemoConnectionPlaceholder = {
+  id: string;
+  name: string;
+  summary: string;
+  statusLabel: string;
+  callout: string;
+  actionLabel: string;
+};
+
 const inboxItems: InboxItem[] = [
   {
     id: "inbox-bupa-claim",
@@ -215,6 +231,35 @@ const quickActions: DashboardQuickAction[] = [
   }
 ];
 
+const authEntrySurface: AuthEntrySurface = {
+  title: "Auth entry surfaces are ready for real providers.",
+  summary:
+    "Use the login workspace as the future handoff point for secure sign-in, account recovery, and provider-based access without wiring those flows yet.",
+  primaryActionLabel: "Open login workspace",
+  secondaryActionLabel: "Return to settings"
+};
+
+const connectionPlaceholders: DemoConnectionPlaceholder[] = [
+  {
+    id: "connection-gmail",
+    name: "Gmail connection",
+    summary:
+      "Reserve this surface for inbox sync, thread permissions, and message ingestion once Google auth is connected.",
+    statusLabel: "Not connected",
+    callout: "Auth-ready placeholder for the first email integration.",
+    actionLabel: "Connect Gmail soon"
+  },
+  {
+    id: "connection-rss",
+    name: "RSS sources",
+    summary:
+      "Keep space for curated feeds, source health, and digest preferences before live subscriptions are switched on.",
+    statusLabel: "No feeds linked",
+    callout: "Settings-ready placeholder for future RSS imports.",
+    actionLabel: "Add RSS feeds soon"
+  }
+];
+
 function cloneAdminItems(items: AdminItemRecord[]): AdminItemRecord[] {
   return items.map((item) => ({ ...item }));
 }
@@ -275,4 +320,12 @@ export function getDemoDashboardData(): DashboardData {
     stats: cloneStats(stats),
     quickActions: cloneQuickActions(quickActions)
   };
+}
+
+export function getDemoAuthEntrySurface(): AuthEntrySurface {
+  return { ...authEntrySurface };
+}
+
+export function getDemoConnectionPlaceholders(): DemoConnectionPlaceholder[] {
+  return connectionPlaceholders.map((placeholder) => ({ ...placeholder }));
 }
