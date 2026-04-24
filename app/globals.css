@@ -171,6 +171,14 @@ h1 {
   background: transparent;
 }
 
+.app-nav-link--disabled,
+.mobile-nav__link--disabled {
+  cursor: default;
+  color: var(--muted);
+  border-color: var(--panel-border);
+  background: color-mix(in srgb, var(--background-elevated) 88%, transparent);
+}
+
 .app-nav-link:hover,
 .app-nav-link:focus-visible,
 .mobile-nav__link:hover,
@@ -180,6 +188,16 @@ h1 {
   color: var(--accent-strong);
   outline: none;
   transform: translateX(2px);
+}
+
+.app-nav-link--disabled:hover,
+.app-nav-link--disabled:focus-visible,
+.mobile-nav__link--disabled:hover,
+.mobile-nav__link--disabled:focus-visible {
+  color: var(--muted);
+  border-color: var(--panel-border);
+  background: color-mix(in srgb, var(--background-elevated) 88%, transparent);
+  transform: none;
 }
 
 .mobile-nav {

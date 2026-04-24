@@ -1,13 +1,4 @@
-import Link from "next/link";
-
-const navigationItems = [
-  { href: "/", label: "Today" },
-  { href: "/inbox", label: "Inbox" },
-  { href: "/bills", label: "Bills" },
-  { href: "/news", label: "News" },
-  { href: "/tasks", label: "Tasks" },
-  { href: "/settings", label: "Settings" }
-] as const;
+import { NavigationItem, navigationItems } from "./navigation";
 
 export function Sidebar() {
   return (
@@ -21,9 +12,13 @@ export function Sidebar() {
       </div>
       <nav aria-label="Primary" className="app-sidebar__nav">
         {navigationItems.map((item) => (
-          <Link key={item.href} className="app-nav-link" href={item.href}>
-            {item.label}
-          </Link>
+          <NavigationItem
+            key={item.href}
+            available={item.available}
+            className="app-nav-link"
+            href={item.href}
+            label={item.label}
+          />
         ))}
       </nav>
     </aside>

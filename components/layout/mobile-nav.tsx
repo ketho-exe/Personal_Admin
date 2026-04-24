@@ -1,21 +1,16 @@
-import Link from "next/link";
-
-const navigationItems = [
-  { href: "/", label: "Today" },
-  { href: "/inbox", label: "Inbox" },
-  { href: "/bills", label: "Bills" },
-  { href: "/news", label: "News" },
-  { href: "/tasks", label: "Tasks" },
-  { href: "/settings", label: "Settings" }
-] as const;
+import { NavigationItem, navigationItems } from "./navigation";
 
 export function MobileNav() {
   return (
     <nav aria-label="Primary" className="mobile-nav">
       {navigationItems.map((item) => (
-        <Link key={item.href} className="mobile-nav__link" href={item.href}>
-          {item.label}
-        </Link>
+        <NavigationItem
+          key={item.href}
+          available={item.available}
+          className="mobile-nav__link"
+          href={item.href}
+          label={item.label}
+        />
       ))}
     </nav>
   );
