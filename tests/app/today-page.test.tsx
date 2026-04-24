@@ -2,28 +2,33 @@ import { render, screen } from "@testing-library/react";
 import HomePage from "@/app/page";
 
 describe("HomePage", () => {
-  it("renders the today dashboard structure from demo data", async () => {
+  it("renders the today dashboard sections and supporting chrome", async () => {
     const page = await HomePage();
 
     render(page);
 
     expect(screen.getByRole("heading", { name: "Today" })).toBeInTheDocument();
+    expect(screen.getByText(/morning briefing/i)).toBeInTheDocument();
+    expect(screen.getByText(/first move/i)).toBeInTheDocument();
+    expect(screen.getByText(/inbox pulse/i)).toBeInTheDocument();
+    expect(screen.getByText(/priorities/i)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /what deserves attention first/i })
     ).toBeInTheDocument();
+    expect(screen.getByText(/upcoming bills/i)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /cash flow at a glance/i })
     ).toBeInTheDocument();
+    expect(screen.getByText(/news digest/i)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /signals worth keeping in view/i })
     ).toBeInTheDocument();
+    expect(screen.getByText(/quick actions/i)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /choose the next lane/i })
     ).toBeInTheDocument();
-    expect(screen.getByText(/urgent items/i)).toBeInTheDocument();
-    expect(screen.getByText(/bupa member support/i)).toBeInTheDocument();
-    expect(screen.getByText(/octopus energy/i)).toBeInTheDocument();
-    expect(screen.getByText(/financial times/i)).toBeInTheDocument();
+    expect(screen.getAllByTitle(/coming soon/i)).toHaveLength(3);
+    expect(document.querySelectorAll("[aria-disabled='true']")).toHaveLength(3);
   });
 
   it("keeps unfinished quick actions visible without rendering dead links", async () => {

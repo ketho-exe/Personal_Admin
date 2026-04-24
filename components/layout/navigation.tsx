@@ -33,7 +33,7 @@ export function NavigationItem({
     return (
       <span
         aria-disabled="true"
-        className={`${className} ${disabledClassName ?? `${className}--disabled`}`}
+        className={disabledClassName ?? `${className}--disabled`}
         title={`${label} coming soon`}
       >
         {content}
