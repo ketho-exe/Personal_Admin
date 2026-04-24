@@ -1,25 +1,23 @@
-import { readEnv } from "@/lib/env";
+import { readPublicEnv } from "@/lib/env";
 
 type EnvSource = Record<string, string | undefined>;
 
-type SupabaseDemoConfig = {
+type SupabasePublicDemoConfig = {
   isConfigured: false;
   mode: "demo";
 };
 
-type SupabaseLiveConfig = {
+type SupabasePublicLiveConfig = {
   isConfigured: true;
   mode: "live";
   url: string;
   anonKey: string;
-  serviceRoleKey?: string;
 };
 
-export type SupabaseConfig = SupabaseDemoConfig | SupabaseLiveConfig;
+export type SupabasePublicConfig = SupabasePublicDemoConfig | SupabasePublicLiveConfig;
 
-export function getSupabaseConfig(source: EnvSource = process.env): SupabaseConfig {
-  const { NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY } =
-    readEnv(source);
+export function getSupabaseConfig(source: EnvSource = process.env): SupabasePublicConfig {
+  const { NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY } = readPublicEnv(source);
 
   if (!NEXT_PUBLIC_SUPABASE_URL || !NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     return {
@@ -32,7 +30,6 @@ export function getSupabaseConfig(source: EnvSource = process.env): SupabaseConf
     isConfigured: true,
     mode: "live",
     url: NEXT_PUBLIC_SUPABASE_URL,
-    anonKey: NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    serviceRoleKey: SUPABASE_SERVICE_ROLE_KEY
+    anonKey: NEXT_PUBLIC_SUPABASE_ANON_KEY
   };
 }
