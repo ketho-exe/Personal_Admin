@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 export const navigationItems = [
   { href: "/", label: "Today", available: true },
@@ -11,32 +12,38 @@ export const navigationItems = [
 
 type NavigationItemProps = Readonly<{
   available: boolean;
+  children?: ReactNode;
   className: string;
+  disabledClassName?: string;
   href: string;
   label: string;
 }>;
 
 export function NavigationItem({
   available,
+  children,
   className,
+  disabledClassName,
   href,
   label
 }: NavigationItemProps) {
+  const content = children ?? label;
+
   if (!available) {
     return (
       <span
         aria-disabled="true"
-        className={`${className} ${className}--disabled`}
+        className={`${className} ${disabledClassName ?? `${className}--disabled`}`}
         title={`${label} coming soon`}
       >
-        {label}
+        {content}
       </span>
     );
   }
 
   return (
     <Link className={className} href={href}>
-      {label}
+      {content}
     </Link>
   );
 }

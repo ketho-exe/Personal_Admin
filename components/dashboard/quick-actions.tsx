@@ -1,14 +1,9 @@
-import Link from "next/link";
-import { navigationItems } from "@/components/layout/navigation";
+import { NavigationItem, navigationItems } from "@/components/layout/navigation";
 import type { DashboardQuickAction } from "@/lib/types";
 
 type QuickActionsProps = Readonly<{
   actions: DashboardQuickAction[];
 }>;
-
-function isAvailable(href: string) {
-  return navigationItems.find((item) => item.href === href)?.available ?? false;
-}
 
 export function QuickActions({ actions }: QuickActionsProps) {
   return (
@@ -26,7 +21,7 @@ export function QuickActions({ actions }: QuickActionsProps) {
 
       <div className="mt-6 grid gap-3">
         {actions.map((action) => {
-          const available = isAvailable(action.href);
+          const navigationItem = navigationItems.find((item) => item.href === action.href);
           const content = (
             <>
               <span className="block text-lg">{action.label}</span>
@@ -36,27 +31,17 @@ export function QuickActions({ actions }: QuickActionsProps) {
             </>
           );
 
-          if (!available) {
-            return (
-              <span
-                aria-disabled="true"
-                className="rounded-[1.4rem] border border-[var(--panel-border)] bg-[rgba(255,255,255,0.46)] px-4 py-4"
-                key={action.id}
-                title={`${action.label} coming soon`}
-              >
-                {content}
-              </span>
-            );
-          }
-
           return (
-            <Link
+            <NavigationItem
+              available={navigationItem?.available ?? false}
               className="rounded-[1.4rem] border border-[var(--panel-border)] bg-[rgba(255,255,255,0.62)] px-4 py-4 transition-transform duration-150 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[rgba(255,244,234,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+              disabledClassName="rounded-[1.4rem] border border-[var(--panel-border)] bg-[rgba(255,255,255,0.46)] px-4 py-4"
               href={action.href}
               key={action.id}
+              label={action.label}
             >
               {content}
-            </Link>
+            </NavigationItem>
           );
         })}
       </div>
