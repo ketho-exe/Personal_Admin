@@ -252,9 +252,9 @@ Before handoff, the implementation should be verified with:
 - `npm test`
 - `npm run build`
 
-For the current foundation handoff, `npm run lint`, `npm test`, and `npm run build` were run as the final verification set and all passed.
+For the current `HEAD` handoff state, `npm run lint`, `npm test`, and `npm run build` were run as the final verification set and all passed before handoff commit creation.
 
-The README handoff must explicitly direct the user to run `supabase/schema.sql` in their Supabase project's SQL Editor during initial setup.
+The README handoff must explicitly direct the user to copy `.env.example` to `.env.local`, set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` for configured Supabase mode, and run `supabase/schema.sql` in their Supabase project's SQL Editor during initial setup.
 
 ## Open Decisions Resolved In This Spec
 
