@@ -31,6 +31,9 @@ function getStatusLabel(status: InboxItem["status"]) {
 }
 
 export function InboxList({ items, tasks }: InboxListProps) {
+  const awaitingResponseCount = items.filter((item) => item.requiresResponse).length;
+  const readOnlyCount = items.filter((item) => item.status !== "new").length;
+
   return (
     <Card
       aria-labelledby="inbox-list-title"
@@ -43,13 +46,13 @@ export function InboxList({ items, tasks }: InboxListProps) {
         description="Review what is new, what needs a reply, and which messages already have a follow-up task attached."
         eyebrow="Inbox Queue"
         id="inbox-list-title"
-        title="Filter by status"
+        title="Queue at a glance"
       />
 
       <div className="mt-5 flex flex-wrap gap-2 text-sm">
-        <StatusPill tone="accent">All items</StatusPill>
-        <StatusPill tone="neutral">Awaiting response</StatusPill>
-        <StatusPill tone="neutral">Read only</StatusPill>
+        <StatusPill tone="accent">{`${items.length} total items`}</StatusPill>
+        <StatusPill tone="neutral">{`${awaitingResponseCount} awaiting response`}</StatusPill>
+        <StatusPill tone="neutral">{`${readOnlyCount} already read`}</StatusPill>
       </div>
 
       <div className="mt-6 grid gap-4">

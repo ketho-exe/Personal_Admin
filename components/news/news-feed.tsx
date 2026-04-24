@@ -47,7 +47,7 @@ export function NewsFeed({ items }: NewsFeedProps) {
               <StatusPill tone={getPriorityClasses(item.priority)}>
                 {item.priority}
               </StatusPill>
-              <StatusPill tone="neutral">
+              <StatusPill tone="accent">
                 {item.category.replace("-", " ")}
               </StatusPill>
               <span className="text-xs uppercase tracking-[0.08em] text-[var(--muted)]">
