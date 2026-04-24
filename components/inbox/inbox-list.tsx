@@ -27,12 +27,26 @@ function getPriorityClasses(priority: InboxItem["priority"]) {
 }
 
 function getStatusLabel(status: InboxItem["status"]) {
-  return status === "new" ? "Needs review" : "Read";
+  switch (status) {
+    case "new":
+      return "Needs review";
+    case "read":
+      return "Read";
+    case "dismissed":
+      return "Dismissed";
+    case "archived":
+      return "Archived";
+    default:
+      return status;
+  }
 }
 
 export function InboxList({ items, tasks }: InboxListProps) {
   const awaitingResponseCount = items.filter((item) => item.requiresResponse).length;
-  const readOnlyCount = items.filter((item) => item.status !== "new").length;
+  const readCount = items.filter((item) => item.status === "read").length;
+  const clearedCount = items.filter(
+    (item) => item.status === "dismissed" || item.status === "archived"
+  ).length;
 
   return (
     <Card
@@ -52,7 +66,8 @@ export function InboxList({ items, tasks }: InboxListProps) {
       <div className="mt-5 flex flex-wrap gap-2 text-sm">
         <StatusPill tone="accent">{`${items.length} total items`}</StatusPill>
         <StatusPill tone="neutral">{`${awaitingResponseCount} awaiting response`}</StatusPill>
-        <StatusPill tone="neutral">{`${readOnlyCount} already read`}</StatusPill>
+        <StatusPill tone="neutral">{`${readCount} read`}</StatusPill>
+        <StatusPill tone="neutral">{`${clearedCount} cleared`}</StatusPill>
       </div>
 
       <div className="mt-6 grid gap-4">
