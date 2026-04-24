@@ -8,4 +8,4 @@ Run the SQL in [`supabase/schema.sql`](./supabase/schema.sql) in your Supabase p
 2. Go to `SQL Editor`.
 3. Paste in the contents of `supabase/schema.sql` and run it.
 
-Re-run the same file in Supabase whenever you need to recreate the database structure from source.
+Use `supabase/schema.sql` for the initial database setup in Supabase. If you need to change an existing database later, review the SQL carefully before running it again.
