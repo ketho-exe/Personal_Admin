@@ -4,11 +4,19 @@ export type AdminItemStatus = "new" | "read" | "dismissed" | "archived";
 
 export type AdminItemSource = "email" | "news" | "manual" | "system";
 
+export type AdminCategory =
+  | "finance"
+  | "health"
+  | "housing"
+  | "subscriptions"
+  | "tax"
+  | "utilities";
+
 export interface AdminItemRecord {
   id: string;
   title: string;
   summary: string;
-  category: string;
+  category: AdminCategory;
   priority: Priority;
   status: AdminItemStatus;
   source: AdminItemSource;
@@ -31,7 +39,7 @@ export interface BillRecord {
   amountDue: number;
   dueDate: string;
   autopay: boolean;
-  category: "utility" | "insurance" | "subscription" | "housing" | "tax";
+  category: Extract<AdminCategory, "housing" | "subscriptions" | "tax" | "utilities">;
   status: BillStatus;
 }
 
@@ -51,7 +59,7 @@ export interface TaskItem {
   id: string;
   title: string;
   summary: string;
-  category: "admin" | "finance" | "home" | "health";
+  category: AdminCategory;
   priority: Priority;
   status: TaskStatus;
   source: "manual" | "system";

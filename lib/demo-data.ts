@@ -2,44 +2,46 @@ import type {
   AdminItemRecord,
   BillRecord,
   DashboardData,
+  DashboardQuickAction,
+  DashboardStat,
   InboxItem,
   NewsItem,
   TaskItem
 } from "@/lib/types";
 
-export const demoInboxItems: InboxItem[] = [
+const inboxItems: InboxItem[] = [
   {
-    id: "inbox-anthem-claim",
-    title: "Insurance claim follow-up needed",
-    summary: "Anthem needs one receipt uploaded before reimbursement can be approved.",
+    id: "inbox-bupa-claim",
+    title: "Bupa claim needs one final receipt",
+    summary: "Bupa can finish the reimbursement as soon as the physio receipt is attached.",
     category: "health",
     priority: "urgent",
     status: "new",
     source: "email",
     dueDate: "2026-04-25",
-    sender: "Anthem Claims",
+    sender: "Bupa Member Support",
     receivedAt: "2026-04-24T07:10:00.000Z",
     threadCount: 3,
     requiresResponse: true
   },
   {
-    id: "inbox-landlord-renewal",
-    title: "Lease renewal draft arrived",
-    summary: "Property manager shared next year's renewal terms with a 3.2% increase.",
+    id: "inbox-letting-renewal",
+    title: "Tenancy renewal draft arrived",
+    summary: "The letting agent shared next year's tenancy terms with a 3.2% rent increase.",
     category: "housing",
     priority: "high",
     status: "new",
     source: "email",
     dueDate: "2026-04-29",
-    sender: "Northline Property Group",
+    sender: "Northline Lettings",
     receivedAt: "2026-04-23T18:42:00.000Z",
     threadCount: 2,
     requiresResponse: true
   },
   {
     id: "inbox-hmrc-confirmation",
-    title: "Tax payment confirmation",
-    summary: "Quarterly estimated tax payment was received and posted successfully.",
+    title: "HMRC payment confirmation",
+    summary: "Your self assessment payment has been received and applied to this quarter.",
     category: "tax",
     priority: "medium",
     status: "read",
@@ -51,7 +53,7 @@ export const demoInboxItems: InboxItem[] = [
   }
 ];
 
-export const demoBills: BillRecord[] = [
+const bills: BillRecord[] = [
   {
     id: "bill-energy",
     name: "Electricity",
@@ -59,90 +61,90 @@ export const demoBills: BillRecord[] = [
     amountDue: 118.42,
     dueDate: "2026-04-27",
     autopay: true,
-    category: "utility",
+    category: "utilities",
     status: "due-soon"
   },
   {
-    id: "bill-renters",
-    name: "Renters insurance",
-    vendor: "Lemonade",
-    amountDue: 19.0,
+    id: "bill-council-tax",
+    name: "Council tax",
+    vendor: "Camden Council",
+    amountDue: 164.0,
     dueDate: "2026-05-01",
     autopay: true,
-    category: "insurance",
+    category: "housing",
     status: "scheduled"
   },
   {
-    id: "bill-password-manager",
+    id: "bill-1password",
     name: "Password manager renewal",
     vendor: "1Password",
     amountDue: 64.99,
     dueDate: "2026-05-03",
     autopay: false,
-    category: "subscription",
+    category: "subscriptions",
     status: "scheduled"
   }
 ];
 
-export const demoNewsItems: NewsItem[] = [
+const newsItems: NewsItem[] = [
   {
-    id: "news-bonds",
-    title: "Bond yields tick higher as markets reset rate-cut expectations",
-    summary: "Higher yields could keep mortgage and savings rates elevated through early summer.",
+    id: "news-rates",
+    title: "Sterling savings providers raise easy-access rates again",
+    summary: "Several high street banks lifted rates ahead of month end, improving short-term cash options.",
     sourceName: "Financial Times",
     publishedAt: "2026-04-24T06:30:00.000Z",
-    category: "markets",
+    category: "personal-finance",
     priority: "high"
   },
   {
-    id: "news-grid",
-    title: "UK energy regulator outlines new winter resilience measures",
-    summary: "The update may reduce volatility in household energy pricing ahead of colder months.",
+    id: "news-energy",
+    title: "Ofgem outlines updated consumer protections before winter",
+    summary: "The regulator said suppliers will face tighter service expectations during periods of market stress.",
     sourceName: "Reuters",
     publishedAt: "2026-04-24T05:15:00.000Z",
     category: "policy",
     priority: "medium"
   },
   {
-    id: "news-isa",
-    title: "Banks compete on cash ISA offers before deadline rush",
-    summary: "Several providers raised promotional rates, making short-term cash parking more attractive.",
-    sourceName: "Bloomberg",
+    id: "news-mortgages",
+    title: "Mortgage brokers expect lenders to keep repricing fixed deals",
+    summary: "Higher gilt yields are feeding through to household borrowing costs more slowly than last autumn.",
+    sourceName: "BBC News",
     publishedAt: "2026-04-23T20:20:00.000Z",
-    category: "personal-finance",
+    category: "markets",
     priority: "medium"
   }
 ];
 
-export const demoTasks: TaskItem[] = [
+const tasks: TaskItem[] = [
   {
     id: "task-submit-receipt",
     title: "Upload physio receipt",
-    summary: "Attach the final receipt PDF so the Anthem claim can clear this week.",
+    summary: "Attach the final PDF so the Bupa claim can clear before the weekend.",
     category: "health",
     priority: "urgent",
     status: "todo",
     source: "system",
     dueDate: "2026-04-25",
-    linkedRecordId: "inbox-anthem-claim",
+    linkedRecordId: "inbox-bupa-claim",
     estimateMinutes: 10
   },
   {
-    id: "task-review-lease",
-    title: "Review lease renewal terms",
-    summary: "Check rent increase, parking clause, and the notice period before replying.",
-    category: "home",
+    id: "task-review-tenancy",
+    title: "Review tenancy renewal terms",
+    summary: "Check the rent increase, break clause, and notice period before replying to the agent.",
+    category: "housing",
     priority: "high",
     status: "in_progress",
     source: "system",
     dueDate: "2026-04-28",
-    linkedRecordId: "inbox-landlord-renewal",
+    linkedRecordId: "inbox-letting-renewal",
     estimateMinutes: 25
   },
   {
     id: "task-reconcile-budget",
     title: "Reconcile April discretionary spending",
-    summary: "Update the budget sheet before month end and flag overspend categories.",
+    summary: "Update the monthly budget and flag any categories that ran over target.",
     category: "finance",
     priority: "medium",
     status: "todo",
@@ -152,11 +154,11 @@ export const demoTasks: TaskItem[] = [
   }
 ];
 
-export const demoPriorityItems: AdminItemRecord[] = [
+const priorityItems: AdminItemRecord[] = [
   {
-    id: "priority-anthem-claim",
-    title: "Finish insurance claim follow-up",
-    summary: "One missing receipt is blocking reimbursement and the deadline is tomorrow.",
+    id: "priority-bupa-claim",
+    title: "Finish the Bupa reimbursement",
+    summary: "One missing receipt is blocking the claim and the upload deadline is tomorrow.",
     category: "health",
     priority: "urgent",
     status: "new",
@@ -165,8 +167,8 @@ export const demoPriorityItems: AdminItemRecord[] = [
   },
   {
     id: "priority-electricity",
-    title: "Confirm April electricity autopay",
-    summary: "The next bill is larger than usual and worth checking before it drafts.",
+    title: "Check the April electricity charge",
+    summary: "This month's Octopus bill is above the recent average and worth reviewing before it drafts.",
     category: "utilities",
     priority: "high",
     status: "new",
@@ -174,9 +176,9 @@ export const demoPriorityItems: AdminItemRecord[] = [
     dueDate: "2026-04-27"
   },
   {
-    id: "priority-lease",
-    title: "Respond to lease renewal",
-    summary: "The landlord sent a renewal draft with a moderate increase and a short response window.",
+    id: "priority-tenancy",
+    title: "Respond to the tenancy renewal",
+    summary: "The letting agent sent next year's terms and wants a decision before next week.",
     category: "housing",
     priority: "high",
     status: "new",
@@ -185,42 +187,92 @@ export const demoPriorityItems: AdminItemRecord[] = [
   }
 ];
 
-export const demoDashboardData: DashboardData = {
-  briefing: {
-    title: "Good morning, your admin load looks focused today.",
-    summary:
-      "Three items deserve attention first: an insurance reimbursement, a higher-than-usual utility bill, and a lease renewal decision before next week.",
-    generatedAt: "2026-04-24T07:30:00.000Z"
+const stats: DashboardStat[] = [
+  { id: "stat-urgent", label: "Urgent items", value: "1", tone: "attention" },
+  { id: "stat-bills", label: "Bills due in 7 days", value: "2", tone: "calm" },
+  { id: "stat-tasks", label: "Open tasks", value: "3", tone: "calm" },
+  { id: "stat-autopay", label: "Bills on autopay", value: "2 of 3", tone: "good" }
+];
+
+const quickActions: DashboardQuickAction[] = [
+  {
+    id: "action-inbox",
+    label: "Triage inbox",
+    href: "/inbox",
+    description: "Clear high-priority messages and capture next steps."
   },
-  priorityItems: demoPriorityItems,
-  inboxPreview: demoInboxItems,
-  upcomingBills: demoBills,
-  newsDigest: demoNewsItems,
-  tasks: demoTasks,
-  stats: [
-    { id: "stat-urgent", label: "Urgent items", value: "1", tone: "attention" },
-    { id: "stat-bills", label: "Bills due in 7 days", value: "2", tone: "calm" },
-    { id: "stat-tasks", label: "Open tasks", value: "3", tone: "calm" },
-    { id: "stat-autopay", label: "Bills on autopay", value: "2 of 3", tone: "good" }
-  ],
-  quickActions: [
-    {
-      id: "action-inbox",
-      label: "Triage inbox",
-      href: "/inbox",
-      description: "Clear high-priority messages and capture next steps."
+  {
+    id: "action-bills",
+    label: "Review bills",
+    href: "/bills",
+    description: "Double-check upcoming charges and autopay settings."
+  },
+  {
+    id: "action-tasks",
+    label: "Plan tasks",
+    href: "/tasks",
+    description: "Sequence admin work before the weekend gets busy."
+  }
+];
+
+function cloneAdminItems(items: AdminItemRecord[]): AdminItemRecord[] {
+  return items.map((item) => ({ ...item }));
+}
+
+function cloneInboxItems(items: InboxItem[]): InboxItem[] {
+  return items.map((item) => ({ ...item }));
+}
+
+function cloneBills(items: BillRecord[]): BillRecord[] {
+  return items.map((item) => ({ ...item }));
+}
+
+function cloneNews(items: NewsItem[]): NewsItem[] {
+  return items.map((item) => ({ ...item }));
+}
+
+function cloneTasks(items: TaskItem[]): TaskItem[] {
+  return items.map((item) => ({ ...item }));
+}
+
+function cloneStats(items: DashboardStat[]): DashboardStat[] {
+  return items.map((item) => ({ ...item }));
+}
+
+function cloneQuickActions(items: DashboardQuickAction[]): DashboardQuickAction[] {
+  return items.map((item) => ({ ...item }));
+}
+
+export function getDemoInboxItems(): InboxItem[] {
+  return cloneInboxItems(inboxItems);
+}
+
+export function getDemoBills(): BillRecord[] {
+  return cloneBills(bills);
+}
+
+export function getDemoNewsItems(): NewsItem[] {
+  return cloneNews(newsItems);
+}
+
+export function getDemoTasks(): TaskItem[] {
+  return cloneTasks(tasks);
+}
+
+export function getDemoDashboardData(): DashboardData {
+  return {
+    briefing: {
+      title: "Good morning, your admin load looks focused today.",
+      summary:
+        "Three items deserve attention first: a Bupa reimbursement, a larger electricity charge, and a tenancy renewal that needs an answer before next week.",
+      generatedAt: "2026-04-24T07:30:00.000Z"
     },
-    {
-      id: "action-bills",
-      label: "Review bills",
-      href: "/bills",
-      description: "Double-check upcoming charges and autopay settings."
-    },
-    {
-      id: "action-tasks",
-      label: "Plan tasks",
-      href: "/tasks",
-      description: "Sequence admin work before the weekend gets busy."
-    }
-  ]
-};
+    priorityItems: cloneAdminItems(priorityItems),
+    inboxPreview: getDemoInboxItems(),
+    upcomingBills: getDemoBills(),
+    newsDigest: getDemoNewsItems(),
+    tasks: getDemoTasks(),
+    stats: cloneStats(stats),
+    quickActions: cloneQuickActions(quickActions)
+  };
+}
