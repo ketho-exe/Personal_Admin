@@ -3,11 +3,11 @@ import type { ReactNode } from "react";
 
 export const navigationItems = [
   { href: "/", label: "Today", available: true },
-  { href: "/inbox", label: "Inbox", available: false },
-  { href: "/bills", label: "Bills", available: false },
-  { href: "/news", label: "News", available: false },
-  { href: "/tasks", label: "Tasks", available: false },
-  { href: "/settings", label: "Settings", available: false }
+  { href: "/inbox", label: "Inbox", available: true },
+  { href: "/bills", label: "Bills", available: true },
+  { href: "/news", label: "News", available: true },
+  { href: "/tasks", label: "Tasks", available: true },
+  { href: "/settings", label: "Settings", available: true }
 ] as const;
 
 type NavigationItemProps = Readonly<{

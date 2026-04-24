@@ -23,14 +23,14 @@ describe("HomePage", () => {
     ).toBeInTheDocument();
   });
 
-  it("shows disabled quick actions inside the actions region", async () => {
+  it("shows linked quick actions inside the actions region", async () => {
     const page = await HomePage();
 
     render(page);
 
     const actionsRegion = screen.getByRole("region", { name: /choose the next lane/i });
 
-    expect(actionsRegion.querySelector("[aria-disabled='true']")).not.toBeNull();
-    expect(actionsRegion.querySelector("a")).toBeNull();
+    expect(actionsRegion.querySelector("[aria-disabled='true']")).toBeNull();
+    expect(actionsRegion.querySelectorAll("a")).toHaveLength(3);
   });
 });
