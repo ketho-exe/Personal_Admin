@@ -52,7 +52,7 @@ export function TasksList({ tasks }: TasksListProps) {
       tone="panel"
     >
       <SectionHeading
-        action={<p className="m-0 text-sm text-[var(--muted)]">{activeTasks} active blocks in motion</p>}
+        action={<p className="m-0 text-sm text-[var(--muted-strong)]">{activeTasks} active blocks in motion</p>}
         eyebrow="Tasks Workspace"
         id="tasks-list-title"
         title="Open tasks"
@@ -71,18 +71,18 @@ export function TasksList({ tasks }: TasksListProps) {
                 </StatusPill>
               </div>
               <h3 className="mt-4 text-2xl leading-8">{task.title}</h3>
-              <p className="m-0 mt-2 text-base leading-7 text-[var(--muted)]">{task.summary}</p>
+              <p className="m-0 mt-2 text-base leading-7 text-[var(--muted-strong)]">{task.summary}</p>
             </div>
 
             <Card className="grid gap-3 rounded-[1.25rem] p-4" tone="warm">
               <div>
-                <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+                <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent-strong)]">
                   Estimate
                 </p>
                 <p className="m-0 mt-2 text-lg">{task.estimateMinutes} min</p>
               </div>
               <div>
-                <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+                <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent-strong)]">
                   Due
                 </p>
                 <p className="m-0 mt-2 text-sm leading-6 text-[var(--foreground)]">

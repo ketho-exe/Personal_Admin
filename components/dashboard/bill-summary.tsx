@@ -34,7 +34,7 @@ export function BillSummary({ bills }: BillSummaryProps) {
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="text-xl">{bill.name}</h3>
-                <p className="m-0 mt-1 text-sm text-[var(--muted-strong)]">{bill.vendor}</p>
+                <p className="m-0 mt-1 text-sm text-[var(--foreground)]">{bill.vendor}</p>
               </div>
               <p className="m-0 text-xl">{amountFormatter.format(bill.amountDue)}</p>
             </div>

@@ -81,7 +81,7 @@ export function PriorityList({ items, tasks }: PriorityListProps) {
 
               <Card className="grid gap-3 rounded-[1.25rem] p-4" tone="warm">
                 <div>
-                  <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+                  <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent-strong)]">
                     Due
                   </p>
                   <p className="m-0 mt-2 text-lg">
@@ -89,7 +89,7 @@ export function PriorityList({ items, tasks }: PriorityListProps) {
                   </p>
                 </div>
                 <div>
-                  <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+                  <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent-strong)]">
                     Suggested action
                   </p>
                   <p className="m-0 mt-2 text-sm leading-6 text-[var(--foreground)]">

@@ -44,7 +44,7 @@ export function BillsOverview({ bills }: BillsOverviewProps) {
       <SectionHeading
         action={
           <div className="grid gap-1 text-right">
-            <p className="m-0 text-sm text-[var(--muted)]">Next cycle total</p>
+            <p className="m-0 text-sm text-[var(--muted-strong)]">Next cycle total</p>
             <p className="m-0 text-2xl">{amountFormatter.format(totalUpcoming)}</p>
           </div>
         }
@@ -56,14 +56,14 @@ export function BillsOverview({ bills }: BillsOverviewProps) {
       <div className="mt-6 grid gap-4 lg:grid-cols-[14rem_minmax(0,1fr)]">
         <Card className="grid gap-3" tone="warm">
           <div>
-            <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+            <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent-strong)]">
               Autopay coverage
             </p>
             <p className="m-0 mt-2 text-3xl">{autopayCount}</p>
-            <p className="m-0 text-sm text-[var(--muted)]">of {bills.length} bills protected</p>
+            <p className="m-0 text-sm text-[var(--muted-strong)]">of {bills.length} bills protected</p>
           </div>
           <div>
-            <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+            <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent-strong)]">
               Manual review
             </p>
             <p className="m-0 mt-2 text-sm leading-6 text-[var(--foreground)]">
@@ -86,7 +86,7 @@ export function BillsOverview({ bills }: BillsOverviewProps) {
                     </StatusPill>
                   </div>
                   <h3 className="mt-4 text-2xl">{bill.name}</h3>
-                  <p className="m-0 mt-1 text-sm text-[var(--muted)]">{bill.vendor}</p>
+                  <p className="m-0 mt-1 text-sm text-[var(--foreground)]">{bill.vendor}</p>
                 </div>
                 <p className="m-0 text-2xl">{amountFormatter.format(bill.amountDue)}</p>
               </div>

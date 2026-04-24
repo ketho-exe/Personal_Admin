@@ -47,7 +47,7 @@ export function BriefingHero({
       <div className="relative grid gap-6 xl:grid-cols-[minmax(0,1.65fr)_minmax(18rem,0.95fr)]">
         <div className="space-y-5">
           <div className="space-y-3">
-            <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.22em] text-[var(--accent)]">
+            <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.22em] text-[var(--accent-strong)]">
               Morning Briefing
             </p>
             <div className="space-y-3">
@@ -60,7 +60,7 @@ export function BriefingHero({
               >
                 Today
               </h1>
-              <p className="m-0 max-w-3xl text-lg leading-8 text-[color-mix(in_srgb,var(--foreground)_82%,white)] md:text-xl">
+              <p className="m-0 max-w-3xl text-lg leading-8 text-[var(--foreground)] md:text-xl">
                 {briefing.title}
               </p>
               <p className="m-0 max-w-3xl text-base leading-7 text-[var(--muted-strong)]">
@@ -73,9 +73,9 @@ export function BriefingHero({
             {stats.map((stat) => {
               const toneClass =
                 stat.tone === "attention"
-                  ? "border-[rgba(162,77,47,0.22)] bg-[rgba(162,77,47,0.12)] text-[var(--accent-strong)]"
+                  ? "border-[rgba(162,77,47,0.22)] bg-[rgba(162,77,47,0.14)] text-[var(--foreground)]"
                   : stat.tone === "good"
-                    ? "border-[rgba(77,132,79,0.2)] bg-[rgba(77,132,79,0.12)] text-[rgb(52,92,54)]"
+                    ? "border-[rgba(77,132,79,0.2)] bg-[rgba(77,132,79,0.14)] text-[rgb(43,79,46)]"
                     : "border-[var(--panel-border)] bg-[rgba(255,255,255,0.5)] text-[var(--foreground)]";
 
               return (
@@ -83,7 +83,7 @@ export function BriefingHero({
                   className={`rounded-[1.35rem] border px-4 py-4 ${toneClass}`}
                   key={stat.id}
                 >
-                  <dt className="text-sm text-[var(--muted-strong)]">{stat.label}</dt>
+                  <dt className="text-sm text-[var(--foreground)]">{stat.label}</dt>
                   <dd className="m-0 pt-2 text-2xl">{stat.value}</dd>
                 </div>
               );
@@ -111,7 +111,7 @@ export function BriefingHero({
           </Card>
 
           <Card as="section" tone="warm">
-            <p className="m-0 text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+            <p className="m-0 text-xs uppercase tracking-[0.18em] text-[var(--accent-strong)]">
               Inbox pulse
             </p>
             <p className="mt-3 text-lg leading-7 text-[var(--foreground)]">

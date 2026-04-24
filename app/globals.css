@@ -72,7 +72,7 @@ a {
 
 .hero__eyebrow {
   margin: 0 0 1rem;
-  color: var(--accent);
+  color: var(--accent-strong);
   font-family: "Trebuchet MS", sans-serif;
   font-size: 0.875rem;
   font-weight: 700;
@@ -91,7 +91,7 @@ h1 {
   max-width: 34rem;
   font-size: 1.125rem;
   line-height: 1.7;
-  color: var(--muted);
+  color: var(--muted-strong);
 }
 
 .app-shell {
@@ -135,12 +135,12 @@ h1 {
 .app-sidebar__copy {
   margin: 1rem 0 0;
   line-height: 1.7;
-  color: var(--muted);
+  color: var(--muted-strong);
 }
 
 .app-sidebar__eyebrow {
   margin: 0;
-  color: var(--accent);
+  color: var(--accent-strong);
   font-family: "Trebuchet MS", sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
@@ -176,7 +176,7 @@ h1 {
 .app-nav-link--disabled,
 .mobile-nav__link--disabled {
   cursor: default;
-  color: var(--muted);
+  color: var(--muted-strong);
   border-color: var(--panel-border);
   background: color-mix(in srgb, var(--background-elevated) 88%, transparent);
 }
@@ -196,7 +196,7 @@ h1 {
 .app-nav-link--disabled:focus-visible,
 .mobile-nav__link--disabled:hover,
 .mobile-nav__link--disabled:focus-visible {
-  color: var(--muted);
+  color: var(--muted-strong);
   border-color: var(--panel-border);
   background: color-mix(in srgb, var(--background-elevated) 88%, transparent);
   transform: none;

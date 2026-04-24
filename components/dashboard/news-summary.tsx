@@ -35,7 +35,7 @@ export function NewsSummary({ items }: NewsSummaryProps) {
               <StatusPill tone="accent">
                 {item.category.replace("-", " ")}
               </StatusPill>
-              <span className="text-xs uppercase tracking-[0.08em] text-[var(--muted-strong)]">
+              <span className="text-xs uppercase tracking-[0.08em] text-[var(--foreground)]">
                 {item.sourceName} • {publishedFormatter.format(new Date(item.publishedAt))}
               </span>
             </div>

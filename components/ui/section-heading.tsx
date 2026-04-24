@@ -21,7 +21,7 @@ export function SectionHeading({
   return (
     <div className={cx("flex flex-wrap items-end justify-between gap-3", className)}>
       <div>
-        <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+        <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent-strong)]">
           {eyebrow}
         </p>
         <h2 className="mt-3 text-3xl" id={id}>

@@ -50,12 +50,12 @@ export function NewsFeed({ items }: NewsFeedProps) {
               <StatusPill tone="accent">
                 {item.category.replace("-", " ")}
               </StatusPill>
-              <span className="text-xs uppercase tracking-[0.08em] text-[var(--muted)]">
+              <span className="text-xs uppercase tracking-[0.08em] text-[var(--foreground)]">
                 {item.sourceName} • {publishedFormatter.format(new Date(item.publishedAt))}
               </span>
             </div>
             <h3 className="mt-4 text-2xl leading-8">{item.title}</h3>
-            <p className="m-0 mt-2 text-base leading-7 text-[var(--muted)]">{item.summary}</p>
+            <p className="m-0 mt-2 text-base leading-7 text-[var(--muted-strong)]">{item.summary}</p>
           </Card>
         ))}
       </div>

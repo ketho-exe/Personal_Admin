@@ -57,7 +57,7 @@ export function SettingsPanels({
           <Card as="article" key={panel.id}>
             <StatusPill tone="accent">{panel.eyebrow}</StatusPill>
             <h3 className="mt-3 text-2xl leading-8">{panel.title}</h3>
-            <p className="m-0 mt-3 text-base leading-7 text-[var(--muted)]">{panel.body}</p>
+            <p className="m-0 mt-3 text-base leading-7 text-[var(--muted-strong)]">{panel.body}</p>
           </Card>
         ))}
       </div>
