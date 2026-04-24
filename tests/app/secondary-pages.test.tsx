@@ -11,7 +11,7 @@ describe("secondary pages", () => {
 
     expect(screen.getByTestId("inbox-page")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Inbox" })).toBeInTheDocument();
-    expect(screen.getByRole("region", { name: /filter by status/i })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: /queue at a glance/i })).toBeInTheDocument();
   });
 
   it("renders the bills workspace overview", async () => {

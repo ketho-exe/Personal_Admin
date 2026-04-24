@@ -21,7 +21,8 @@ describe("database setup docs", () => {
     const readme = fs.readFileSync(readmePath, "utf8");
 
     expect(readme).toContain("supabase/schema.sql");
-    expect(readme).toMatch(/run it in (your )?supabase/i);
+    expect(readme).toMatch(/run exactly .*supabase\/schema\.sql/i);
+    expect(readme).toMatch(/your supabase project/i);
     expect(readme).toMatch(/sql editor/i);
   });
 });

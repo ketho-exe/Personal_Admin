@@ -202,7 +202,7 @@ The project should be ready for Supabase connection immediately after setup by t
 - typed helpers or generated-type-ready structure
 - schema SQL committed into the repo
 - setup instructions in the README
-- a final handoff path that tells the user exactly which SQL file to run in Supabase
+- a final handoff path that tells the user to run `supabase/schema.sql` in Supabase
 
 The UI may remain in demo mode even when Supabase credentials are absent. Missing environment variables should not crash the entire local app if the user only wants to preview the interface.
 
@@ -238,11 +238,21 @@ The end of this phase should produce:
 - Tailwind and theme support
 - Supabase wiring and setup files
 - schema SQL in the repo
-- a clearly named SQL file the user can paste or run in Supabase setup
+- the exact Supabase setup file documented as `supabase/schema.sql`
 - polished multi-page dashboard foundation
 - realistic seeded/demo content
 - documentation for local setup
 - an initial commit history that cleanly captures the foundation work
+
+## Final Verification And Handoff
+
+Before handoff, the implementation should be verified with:
+
+- `npm run lint`
+- `npm test`
+- `npm run build`
+
+The README handoff must explicitly direct the user to run `supabase/schema.sql` in their Supabase project's SQL Editor during initial setup.
 
 ## Open Decisions Resolved In This Spec
 
