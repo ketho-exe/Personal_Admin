@@ -1,4 +1,6 @@
 import type { DashboardBriefing, DashboardStat, InboxItem, TaskItem } from "@/lib/types";
+import { Card } from "@/components/ui/card";
+import { StatusPill } from "@/components/ui/status-pill";
 
 type BriefingHeroProps = Readonly<{
   briefing: DashboardBriefing;
@@ -90,7 +92,7 @@ export function BriefingHero({
         </div>
 
         <div className="grid gap-4 self-start">
-          <section className="rounded-[1.5rem] border border-[var(--panel-border)] bg-[rgba(32,25,19,0.9)] p-5 text-[var(--background)] shadow-[0_18px_48px_rgba(32,25,19,0.22)]">
+          <Card as="section" tone="dark">
             <p className="m-0 text-xs uppercase tracking-[0.18em] text-[rgba(244,239,230,0.72)]">
               First move
             </p>
@@ -106,9 +108,9 @@ export function BriefingHero({
                 {leadTask ? getTaskStatusLabel(leadTask.status) : "Ready"}
               </span>
             </div>
-          </section>
+          </Card>
 
-          <section className="rounded-[1.5rem] border border-[var(--panel-border)] bg-[rgba(255,251,245,0.66)] p-5">
+          <Card as="section" tone="warm">
             <p className="m-0 text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
               Inbox pulse
             </p>
@@ -124,7 +126,12 @@ export function BriefingHero({
                 {generatedAtFormatter.format(new Date(briefing.generatedAt))}
               </span>
             </p>
-          </section>
+            {leadInboxItem?.requiresResponse ? (
+              <div className="mt-4">
+                <StatusPill tone="attention">Reply pending</StatusPill>
+              </div>
+            ) : null}
+          </Card>
         </div>
       </div>
     </section>

@@ -1,4 +1,7 @@
 import type { AdminItemRecord, TaskItem } from "@/lib/types";
+import { Card } from "@/components/ui/card";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { StatusPill } from "@/components/ui/status-pill";
 
 type PriorityListProps = Readonly<{
   items: AdminItemRecord[];
@@ -17,11 +20,11 @@ function getPriorityLabel(priority: AdminItemRecord["priority"]) {
 function getPriorityClasses(priority: AdminItemRecord["priority"]) {
   switch (priority) {
     case "urgent":
-      return "bg-[rgba(162,77,47,0.14)] text-[var(--accent-strong)]";
+      return "attention";
     case "high":
-      return "bg-[rgba(193,138,44,0.16)] text-[rgb(117,78,14)]";
+      return "warning";
     default:
-      return "bg-[rgba(32,25,19,0.08)] text-[var(--foreground)]";
+      return "neutral";
   }
 }
 
@@ -42,24 +45,19 @@ function getSourceLabel(source: AdminItemRecord["source"]) {
 
 export function PriorityList({ items, tasks }: PriorityListProps) {
   return (
-    <section
+    <Card
       aria-labelledby="today-priorities-title"
-      className="rounded-[1.75rem] border border-[var(--panel-border)] bg-[var(--panel)] p-6 shadow-[0_20px_60px_var(--panel-shadow)]"
+      as="section"
+      className="rounded-[1.75rem]"
+      padding="lg"
+      tone="panel"
     >
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
-            Priorities
-          </p>
-          <h2 className="mt-3 text-3xl" id="today-priorities-title">
-            What deserves attention first
-          </h2>
-        </div>
-        <p className="m-0 max-w-md text-sm leading-6 text-[var(--muted)]">
-          The queue blends urgent admin signals with the task context needed to move them
-          forward.
-        </p>
-      </div>
+      <SectionHeading
+        description="The queue blends urgent admin signals with the task context needed to move them forward."
+        eyebrow="Priorities"
+        id="today-priorities-title"
+        title="What deserves attention first"
+      />
 
       <div className="mt-6 grid gap-4">
         {items.map((item, index) => {
@@ -67,26 +65,21 @@ export function PriorityList({ items, tasks }: PriorityListProps) {
             tasks.find((task) => task.linkedRecordId === item.id) ?? tasks[index] ?? null;
 
           return (
-            <article
-              className="grid gap-4 rounded-[1.5rem] border border-[var(--panel-border)] bg-[rgba(255,255,255,0.56)] p-5 lg:grid-cols-[minmax(0,1fr)_15rem]"
-              key={item.id}
-            >
+            <Card as="article" className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_15rem]" key={item.id}>
               <div>
                 <div className="flex flex-wrap gap-2">
-                  <span
-                    className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] ${getPriorityClasses(item.priority)}`}
-                  >
+                  <StatusPill tone={getPriorityClasses(item.priority)}>
                     {getPriorityLabel(item.priority)}
-                  </span>
-                  <span className="rounded-full bg-[rgba(32,25,19,0.06)] px-3 py-1 text-xs uppercase tracking-[0.08em] text-[var(--muted)]">
+                  </StatusPill>
+                  <StatusPill tone="accent">
                     {getSourceLabel(item.source)}
-                  </span>
+                  </StatusPill>
                 </div>
                 <h3 className="mt-4 text-2xl leading-8">{item.title}</h3>
                 <p className="m-0 mt-2 text-base leading-7 text-[var(--muted)]">{item.summary}</p>
               </div>
 
-              <div className="grid gap-3 rounded-[1.25rem] bg-[rgba(255,244,234,0.8)] p-4">
+              <Card className="grid gap-3 rounded-[1.25rem] p-4" tone="warm">
                 <div>
                   <p className="m-0 text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
                     Due
@@ -106,11 +99,11 @@ export function PriorityList({ items, tasks }: PriorityListProps) {
                     {linkedTask ? `${linkedTask.estimateMinutes} min block` : "Quick review"}
                   </p>
                 </div>
-              </div>
-            </article>
+              </Card>
+            </Card>
           );
         })}
       </div>
-    </section>
+    </Card>
   );
 }

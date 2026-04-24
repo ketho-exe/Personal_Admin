@@ -1,4 +1,7 @@
 import type { BillRecord, InboxItem, NewsItem, TaskItem } from "@/lib/types";
+import { Card } from "@/components/ui/card";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { StatusPill } from "@/components/ui/status-pill";
 
 type SettingsPanelsProps = Readonly<{
   bills: BillRecord[];
@@ -35,39 +38,29 @@ export function SettingsPanels({
   ];
 
   return (
-    <section
+    <Card
       aria-labelledby="settings-panels-title"
-      className="rounded-[1.75rem] border border-[var(--panel-border)] bg-[var(--panel)] p-6 shadow-[0_20px_60px_var(--panel-shadow)]"
+      as="section"
+      className="rounded-[1.75rem]"
+      padding="lg"
+      tone="panel"
     >
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
-            Settings Workspace
-          </p>
-          <h2 className="mt-3 text-3xl" id="settings-panels-title">
-            Preferences and integrations
-          </h2>
-        </div>
-        <p className="m-0 max-w-md text-sm leading-6 text-[var(--muted)]">
-          Static placeholders for the controls that will eventually connect to live
-          account, billing, and digest preferences.
-        </p>
-      </div>
+      <SectionHeading
+        description="Static placeholders for the controls that will eventually connect to live account, billing, and digest preferences."
+        eyebrow="Settings Workspace"
+        id="settings-panels-title"
+        title="Preferences and integrations"
+      />
 
       <div className="mt-6 grid gap-4 lg:grid-cols-3">
         {panels.map((panel) => (
-          <article
-            className="rounded-[1.5rem] border border-[var(--panel-border)] bg-[rgba(255,255,255,0.56)] p-5"
-            key={panel.id}
-          >
-            <p className="m-0 text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
-              {panel.eyebrow}
-            </p>
+          <Card as="article" key={panel.id}>
+            <StatusPill tone="accent">{panel.eyebrow}</StatusPill>
             <h3 className="mt-3 text-2xl leading-8">{panel.title}</h3>
             <p className="m-0 mt-3 text-base leading-7 text-[var(--muted)]">{panel.body}</p>
-          </article>
+          </Card>
         ))}
       </div>
-    </section>
+    </Card>
   );
 }

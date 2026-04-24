@@ -1,4 +1,6 @@
 import { NavigationItem, navigationItems } from "@/components/layout/navigation";
+import { Card } from "@/components/ui/card";
+import { SectionHeading } from "@/components/ui/section-heading";
 import type { DashboardQuickAction } from "@/lib/types";
 
 type QuickActionsProps = Readonly<{
@@ -7,22 +9,20 @@ type QuickActionsProps = Readonly<{
 
 export function QuickActions({ actions }: QuickActionsProps) {
   return (
-    <section
+    <Card
       aria-labelledby="today-actions-title"
-      className="rounded-[1.75rem] border border-[var(--panel-border)] bg-[var(--panel)] p-6 shadow-[0_20px_60px_var(--panel-shadow)]"
+      as="section"
+      className="rounded-[1.75rem]"
+      padding="lg"
+      tone="panel"
     >
-      <div>
-        <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
-          Quick Actions
-        </p>
-        <h2 className="mt-3 text-3xl" id="today-actions-title">
-          Choose the next lane
-        </h2>
-        <p className="m-0 mt-3 text-sm leading-6 text-[var(--muted)]">
-          Shortcuts stay grounded in the product roadmap, so unfinished destinations remain
-          visible without becoming dead ends.
-        </p>
-      </div>
+      <SectionHeading
+        className="items-start"
+        description="Shortcuts stay grounded in the product roadmap, so unfinished destinations remain visible without becoming dead ends."
+        eyebrow="Quick Actions"
+        id="today-actions-title"
+        title="Choose the next lane"
+      />
 
       <div className="mt-6 grid gap-3">
         {actions.map((action) => {
@@ -50,6 +50,6 @@ export function QuickActions({ actions }: QuickActionsProps) {
           );
         })}
       </div>
-    </section>
+    </Card>
   );
 }
