@@ -47,23 +47,23 @@ export function BriefingHero({
       <div className="relative grid gap-6 xl:grid-cols-[minmax(0,1.65fr)_minmax(18rem,0.95fr)]">
         <div className="space-y-5">
           <div className="space-y-3">
-            <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.22em] text-[var(--accent-strong)]">
+            <p className="m-0 font-[Trebuchet_MS,sans-serif] text-xs font-bold uppercase tracking-[0.22em] text-[#8a3a22]">
               Morning Briefing
             </p>
             <div className="space-y-3">
-              <h2 className="m-0 text-lg tracking-[0.08em] text-[var(--accent-strong)]">
+              <h2 className="m-0 text-lg tracking-[0.08em] text-[#8a3a22]">
                 Personal Admin Dashboard
               </h2>
               <h1
-                className="m-0 max-w-3xl text-4xl leading-[0.95] md:text-6xl"
+                className="m-0 max-w-3xl text-4xl leading-[0.95] text-[#201913] md:text-6xl"
                 id="today-briefing-title"
               >
                 Today
               </h1>
-              <p className="m-0 max-w-3xl text-lg leading-8 text-[var(--foreground)] md:text-xl">
+              <p className="m-0 max-w-3xl text-lg leading-8 text-[#2b211b] md:text-xl">
                 {briefing.title}
               </p>
-              <p className="m-0 max-w-3xl text-base leading-7 text-[var(--muted-strong)]">
+              <p className="m-0 max-w-3xl text-base leading-7 text-[#4a3c32]">
                 {briefing.summary}
               </p>
             </div>
@@ -76,15 +76,15 @@ export function BriefingHero({
                   ? "border-[rgba(162,77,47,0.22)] bg-[rgba(162,77,47,0.14)] text-[var(--foreground)]"
                   : stat.tone === "good"
                     ? "border-[rgba(77,132,79,0.2)] bg-[rgba(77,132,79,0.14)] text-[rgb(43,79,46)]"
-                    : "border-[var(--panel-border)] bg-[rgba(255,255,255,0.5)] text-[var(--foreground)]";
+                    : "border-[var(--panel-border)] bg-[rgba(255,255,255,0.78)] text-[var(--foreground)]";
 
               return (
                 <div
                   className={`rounded-[1.35rem] border px-4 py-4 ${toneClass}`}
                   key={stat.id}
                 >
-                  <dt className="text-sm text-[var(--foreground)]">{stat.label}</dt>
-                  <dd className="m-0 pt-2 text-2xl">{stat.value}</dd>
+                  <dt className="text-sm text-[#5a473a]">{stat.label}</dt>
+                  <dd className="m-0 pt-2 text-2xl text-[#201913]">{stat.value}</dd>
                 </div>
               );
             })}
@@ -111,18 +111,18 @@ export function BriefingHero({
           </Card>
 
           <Card as="section" tone="warm">
-            <p className="m-0 text-xs uppercase tracking-[0.18em] text-[var(--accent-strong)]">
+            <p className="m-0 text-xs uppercase tracking-[0.18em] text-[#8a3a22]">
               Inbox pulse
             </p>
-            <p className="mt-3 text-lg leading-7 text-[var(--foreground)]">
+            <p className="mt-3 text-lg leading-7 text-[#2b211b]">
               {leadInboxItem?.sender} is still waiting on a response.
             </p>
-            <p className="m-0 mt-2 text-sm leading-6 text-[var(--muted-strong)]">
+            <p className="m-0 mt-2 text-sm leading-6 text-[#4a3c32]">
               {leadInboxItem?.summary}
             </p>
-            <p className="m-0 mt-4 text-sm text-[var(--muted-strong)]">
+            <p className="m-0 mt-4 text-sm text-[#5a473a]">
               Briefing generated at{" "}
-              <span className="text-[var(--foreground)]">
+              <span className="text-[#2b211b]">
                 {generatedAtFormatter.format(new Date(briefing.generatedAt))}
               </span>
             </p>
