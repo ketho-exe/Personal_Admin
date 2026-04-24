@@ -252,6 +252,8 @@ Before handoff, the implementation should be verified with:
 - `npm test`
 - `npm run build`
 
+For the current foundation handoff, `npm run lint`, `npm test`, and `npm run build` were run as the final verification set and all passed.
+
 The README handoff must explicitly direct the user to run `supabase/schema.sql` in their Supabase project's SQL Editor during initial setup.
 
 ## Open Decisions Resolved In This Spec
